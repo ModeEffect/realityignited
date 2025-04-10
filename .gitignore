@@ -1,0 +1,8 @@
+.well-known/
+local-xdebuginfo.php
+srv/
+wp-config.php
+wp-content/uploads
+node_modules/
+
+wp-content/db.php
