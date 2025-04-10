@@ -1,5 +1,3 @@
-RewriteEngine On
-RewriteRule ^wp-content/uploads/(.*)$ https://realityignited.com/wp-content/uploads/$1 [R=301,NC,L]
 
 # BEGIN WordPress
 # The directives (lines) between "BEGIN WordPress" and "END WordPress" are
