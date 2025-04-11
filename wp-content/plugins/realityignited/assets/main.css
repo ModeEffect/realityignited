@@ -1,0 +1,16 @@
+.coming-soon-banner {
+    color: black;
+    padding: 15px;
+    width: 400px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 50px;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 1023px) {
+    .coming-soon-banner {
+        width: 100%;
+    }
+}
