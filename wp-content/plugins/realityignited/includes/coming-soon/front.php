@@ -58,6 +58,32 @@ add_filter( 'mepr-product-cant-purchase-string', function (string $output, $prod
     return $output;
 }, 11, 2 );
 
+/**
+ * Remove the error message from the content
+ * if product is coming soon and display just 
+ * the ordinary content
+ * 
+ * @param string $content
+ * @return string $content
+ */
+add_filter('the_content', function ($content) {
+    $object_id = get_queried_object_id();
+    $product = new MeprProduct($object_id);
+
+    if ( $product->ID !== null && is_product_coming_soon( $product ) ) {
+        remove_filter('the_content', 'MeprProductsCtrl::display_registration_form', 10);
+    }
+
+    return $content;
+}, 9);
+
+/**
+ * Display the coming soon banner
+ * if product is coming soon
+ * 
+ * @param string $content
+ * @return string $content
+ */
 add_filter('the_content', function (string $content) {
     $object_id = get_queried_object_id();
     $product = new MeprProduct($object_id);
@@ -124,12 +150,19 @@ add_filter('the_content', function (string $content) {
         </div>
 
         <?php
-        $content = ob_get_clean() . $content;
+        $content = $content . ob_get_clean();
     }
 
     return $content;
 });
 
+/**
+ * Add the coming soon class to the body
+ * if product is coming soon
+ * 
+ * @param array $classes
+ * @return array $classes
+ */
 add_filter('body_class', function (array $classes) {
     $object_id = get_queried_object_id();
     $product = new MeprProduct($object_id);
